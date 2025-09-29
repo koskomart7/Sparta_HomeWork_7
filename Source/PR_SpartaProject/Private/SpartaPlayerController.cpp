@@ -2,15 +2,23 @@
 
 
 #include "SpartaPlayerController.h"
+#include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "inputmappingcontext.h"
+#include "InputAction.h"
+#include "UObject/ConstructorHelpers.h"
+#include "Character_SpartaHomeWork_7.h"
 
 ASpartaPlayerController::ASpartaPlayerController()
-	: InputMappingContext(nullptr),
-		MoveAction(nullptr),
-		JumpAction(nullptr),
-		LookAction(nullptr),
-		SprintAction(nullptr)
 {
+	PlayerPawn = nullptr;
+	InputMappingContext = nullptr;
+	MoveAction = nullptr;
+	JumpAction = nullptr;
+	LookAction = nullptr;
+	SprintAction = nullptr;
+	ElevateAction = nullptr;
+	RollAction = nullptr;
 }
 
 void ASpartaPlayerController::BeginPlay()
@@ -21,7 +29,7 @@ void ASpartaPlayerController::BeginPlay()
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
 			LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>())
 		{
-			if (InputMappingContext)
+			if (InputMappingContext != nullptr)
 			{
 				Subsystem->AddMappingContext(InputMappingContext, 0);
 			}

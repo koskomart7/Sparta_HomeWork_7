@@ -4,10 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "InputActionValue.h"
 #include "SpartaPlayerController.generated.h"
 
 class UInputMappingContext;
 class UInputAction;
+class APawn;
 
 UCLASS()
 class PR_SPARTAPROJECT_API ASpartaPlayerController : public APlayerController
@@ -27,7 +29,14 @@ public:
 	UInputAction* LookAction;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 	UInputAction* SprintAction;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UInputAction* ElevateAction;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UInputAction* RollAction;
 
 protected:
 	virtual void BeginPlay() override;
+
+	private:
+	APawn* PlayerPawn = nullptr;
 };
